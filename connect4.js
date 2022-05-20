@@ -10,13 +10,19 @@ let HEIGHT = 6;
 
 let currPlayer = 1; // active player: 1 or 2
 let board = []; // array of rows, each row is array of cells  (board[y][x])
-const htmlBoard = document.getElementById('board');//gets the "board"
+const gameDiv = document.getElementById('game');//gets the "board"
+const htmlBoard = document.getElementById('board');
 /** makeBoard: create in-JS board structure:
  *    board = array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard(width,height) {
   // TODO: set "board" to empty HEIGHT x WIDTH matrix array
+
+  if(width <=0||height<=0){
+    width = 7;
+    height = 6;
+  }
 WIDTH = width;
 HEIGHT = height;
 for(let i =0; i<HEIGHT;i++)
@@ -73,7 +79,7 @@ function makeHtmlBoard() {
 function findSpotForCol(x){
 //get the board check the colom that is givin return the first empty spot
 
-for(let y =HEIGHT-1; y >= 0;y--)
+for(let y = HEIGHT-1; y >= 0;y--)
 {
 if(board[y][x] === null)
 {
@@ -103,6 +109,8 @@ function placeInTable(y, x) {
 
 function endGame(msg) {
   alert(msg);
+  resetGame();
+  startGame();
 }
 
 /** handleClick: handle click of column top to play piece */
@@ -180,5 +188,27 @@ function checkForWin() {
   }
 }
 
-makeBoard(7,6);
-makeHtmlBoard();
+function resetGame()
+{
+currPlayer = 1;
+board = [];
+
+let tr = document.querySelectorAll("tr");
+
+for(let r of tr)
+{
+  r.remove();
+}
+}
+
+
+
+
+
+function startGame() {
+  makeBoard(7,6);
+  makeHtmlBoard();
+}
+
+
+startGame();
