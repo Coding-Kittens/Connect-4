@@ -4,6 +4,7 @@
   position: absolute;
   left: 25%;
   top: 2%;
+
 }
 
 
@@ -14,17 +15,16 @@
   border: solid 1px #666;
 }
 
-/* pieces are div within game table cells: draw as colored circles */
 
 .piece {
   position: relative;
   border-radius: 100%;
-  /* TODO: make into circles */
   margin: 5px;
   width: 80%;
   height: 80%;
-
+  top: -0.02%;
 }
+
 
 .player1
 {

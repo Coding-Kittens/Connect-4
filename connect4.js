@@ -98,8 +98,17 @@ function placeInTable(y, x) {
   let piece = document.createElement("div");
   let cell = document.getElementById(`${y}-${x}`);
   piece.setAttribute("class", `piece player${currPlayer}`);
-  cell.append(piece);
-  // TODO: make a div and insert into correct table cell
+
+setTimeout(()=>
+{
+  piece.animate([
+    { transform: 'translateY(-500px)' },
+    { transform:  'translateY(30px)'}
+  ],1000);
+cell.append(piece);
+
+},200);
+
 }
 
 
@@ -108,10 +117,21 @@ function placeInTable(y, x) {
 /** endGame: announce game end */
 
 function endGame(msg) {
-  alert(msg);
-  resetGame();
-  startGame();
+  setTimeout(()=>{
+    setTimeout(()=>{
+      alert(msg);
+    },1000);
+    gameOverAnim();
+    setTimeout(()=>{
+      resetGame();
+      startGame();
+    },1500);
+  },1600);
 }
+
+
+
+
 
 /** handleClick: handle click of column top to play piece */
 
@@ -192,13 +212,26 @@ function resetGame()
 {
 currPlayer = 1;
 board = [];
-
 let tr = document.querySelectorAll("tr");
 
 for(let r of tr)
 {
   r.remove();
 }
+}
+
+
+function gameOverAnim() {
+  let pieces = document.querySelectorAll(".piece");
+
+  for(let piece of pieces){
+    piece.animate({ transform: 'translateY(1000px)'}
+    ,1500);
+
+  }
+
+
+
 }
 
 
